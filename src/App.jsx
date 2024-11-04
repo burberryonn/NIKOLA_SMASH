@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import CryptoJS from "crypto-js"; // Импортируем библиотеку
+import { Outlet, useNavigate } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [userData, setUserData] = useState(null);
-
+  const [onGame, setOnGame] = useState(false);
+  const navigate = useNavigate();
+  const play = () => {
+    setOnGame(!onGame);
+    navigate("/game");
+  };
   useEffect(() => {
     if (window.Telegram) {
       const data_check_string = window.Telegram.WebApp.initData;
@@ -31,34 +36,33 @@ function App() {
           console.error("Данные о пользователе недоступны.");
         }
       }
-    } else {
-      setUserData({
-        id: "123456789",
-        first_name: "Олег",
-        last_name: "ХУЙ ТЕБЕ",
-        username: "burberryonn",
-      });
-      console.log(
-        "Telegram WebApp SDK недоступен. Используются тестовые данные."
-      );
     }
   }, []);
 
   return (
     <div className="App">
-      <h1>Мини-приложение Telegram</h1>
-      {userData ? (
-        <div>
-          <p>
-            Привет, {userData?.first_name} {userData?.last_name}!
-          </p>
-          <p>Ваш username: @{userData.username}</p>
-        </div>
+      {onGame ? (
+        <>
+          <Outlet></Outlet>
+          <button onClick={() => play()}>назад</button>
+        </>
       ) : (
-        <p>Не удалось получить данные пользователя</p>
+        <>
+          <h1>NIKOLA SMASH</h1>
+          {userData ? (
+            <div>
+              <p>
+                Привет, {userData?.first_name} {userData?.last_name}!
+              </p>
+              <p>Ваш username: @{userData.username}</p>
+            </div>
+          ) : (
+            <p>Не удалось получить данные пользователя</p>
+          )}
+
+          <button onClick={() => play()}>начать</button>
+        </>
       )}
-      <button onClick={() => setCount((prev) => prev++)}>Click Me!</button>
-      <p>{count}</p>
     </div>
   );
 }
