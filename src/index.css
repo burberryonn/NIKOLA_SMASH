@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Pixelify+Sans:wght@400..700&family=Rubik+Pixels&display=swap");
 
 :root {
-  font-family: "Rubik Pixels",system-ui;
+  /* font-family: "Rubik Pixels",system-ui; */
   font-style: normal;
   color-scheme: light dark;
   color: rgba(238, 0, 0, 0.87);

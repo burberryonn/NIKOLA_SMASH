@@ -1,27 +1,32 @@
-/* Game.css */
 .nikola {
-    transition: transform 0.2s ease;
-}
-
-.nikola:active {
+    transition: transform 0.1s ease;
+  }
+  
+  .nikola:active {
     transform: scale(1.06);
-}
-
-/* Стили для частицы */
-.particle {
-    position: absolute;
-    width: 100px; /* Уменьшенный размер частицы */
-    height: 100px;
-    pointer-events: none; /* Чтобы частицы не мешали клику по основному изображению */
-    animation: flyAway 1s ease forwards;
+  }
+  
+  /* Стили для частицы */
+  .particle {
+    width: 30px; /* Размер частицы */
+    height: 30px;
+    pointer-events: none;
+    animation: flyToClick 1s ease-out forwards;
     opacity: 1;
-    transform: translate(0, 0); /* Начальная позиция */
-}
-
-/* Анимация разлета */
-@keyframes flyAway {
+  }
+  
+  .gun {
+    width: 200px;
+    bottom: 10px;
+    right: 300px;
+    position: absolute;
+    transform: rotate(30deg);
+  }
+  
+  /* Анимация движения частицы к месту клика */
+  @keyframes flyToClick {
     to {
-        transform: translate(var(--offsetX), var(--offsetY));
-        opacity: 0; /* Частица постепенно исчезает */
+      transform: translate(var(--targetX), var(--targetY));
     }
-}
+
+  }
