@@ -1,0 +1,27 @@
+/* Game.css */
+.nikola {
+    transition: transform 0.2s ease;
+}
+
+.nikola:active {
+    transform: scale(1.06);
+}
+
+/* Стили для частицы */
+.particle {
+    position: absolute;
+    width: 100px; /* Уменьшенный размер частицы */
+    height: 100px;
+    pointer-events: none; /* Чтобы частицы не мешали клику по основному изображению */
+    animation: flyAway 1s ease forwards;
+    opacity: 1;
+    transform: translate(0, 0); /* Начальная позиция */
+}
+
+/* Анимация разлета */
+@keyframes flyAway {
+    to {
+        transform: translate(var(--offsetX), var(--offsetY));
+        opacity: 0; /* Частица постепенно исчезает */
+    }
+}
